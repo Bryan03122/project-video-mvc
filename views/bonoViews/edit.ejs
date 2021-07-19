@@ -1,0 +1,54 @@
+<%- include("../templates/head", {title: 'Editar Bono' }) %>
+    <% if (bono) { %>
+        <div class='container mt-4'>
+            <h1>Editar</h1>
+            <div class="card border-secondary">
+                <div class="card-header">Editar Registro</div>
+                <div class="card-body">
+                    <form action="/bonos/update" method="POST">
+                        <input id="id" name="id" value="<%= bono.id_bono%>" hidden>
+
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">Usuario</label>
+                            <select name="user" id="user" class="form-select" tabindex="1">
+                                <option value="<%= bono.id_user %>" selected hidden>
+                                    <%= bono.user%>
+                                </option>
+                                <% user.forEach((user)=> { %>
+                                    <option value="<%= user.id_user %>">
+                                        <%= user.user%>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tipo_bono" class="form-label">Tipo de Bono</label>
+                            <input type="text" name="tipo_bono" id="tipo_bono" value="<%= bono.tipo_bono%>" class="form-control"
+                                tabindex="2">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="desc" class="form-label">Descripción</label>
+                            <input type="text" name="desc" id="desc" value="<%= bono.desc%>" class="form-control"
+                                tabindex="3">
+                        </div>
+                        <div class="mb-3">
+                            <label for="valor" class="form-label">Valor</label>
+                            <input type="text" name="valor" id="valor" value="<%= bono.valor%>" class="form-control"
+                                tabindex="4">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input type="date" name="fecha" id="fecha" value="<%= bono.fecha_format%>" class="form-control" tabindex="5" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                        <a href="/bonos" class="btn btn-secondary">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <% } %>
+            <%- include("../templates/footer") %>

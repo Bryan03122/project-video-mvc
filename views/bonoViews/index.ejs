@@ -1,0 +1,60 @@
+<%- include("../templates/head", {title: 'Bonos'}) %> 
+    <div class = 'container mt-4'>
+        <h1><%= title %></h1>
+        <a href="/bonos/create" class = "btn btn-outline-primary mt-3"><i class="fas fa-plus-circle"></i></a>
+        
+        <table id="users" class="table table-bordered table-striped text-center mt-5">
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th scope="col">USUARIO</th>
+                    <th scope="col">TIPO DE BONO</th>
+                    <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">VALOR</th>
+                    <th scope="col">FECHA</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% results.forEach((bono) => { %> 
+                <tr>
+                    <td><%= bono.user %></td>
+                    <td><%= bono.tipo_bono %></td>
+                    <td><%= bono.desc %></td>
+                    <td>$<%= bono.valor %></td>
+                    <td><%= bono.fecha_format %></td>
+
+                    <td>
+                        <a href="/bonos/edit/<%= bono.id_bono %>" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
+                        <a onclick="confirmar(<%= bono.id_bono %>)" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <% }) %> 
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#users').DataTable();
+        });
+
+        function confirmar(id){
+            Swal.fire({
+            title: '¿Estás seguro de eliminar el registro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: `#3085d6`,
+            cancelButtonColor: `#d33`,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = '/bonos/delete/'+id
+                } 
+            })
+        }
+    </script>
+   
+<%- include("../templates/footer") %> 

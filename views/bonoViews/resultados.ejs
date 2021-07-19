@@ -1,0 +1,46 @@
+<%- include("../templates/head", {title: 'Resultados'}) %> 
+
+    <div class = 'container mt-4'>
+        <h1>Resultados</h1>
+        <div class="card border-secondary">
+            <div class="card-header">Resultados</div>
+            <div class="card-body">
+                <div id="total">
+                    <table id="total" class="table table-bordered table-striped text-center mt-5">
+                        <thead class="bg-dark text-white">
+                            <th scope="col">Total</th>
+                        </thead>
+                        <tbody>
+                            <td><%= total %> </td>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <table id="resultados" class="table table-bordered table-striped text-center mt-5">
+                    <thead>
+                        <tr class="bg-dark text-white">
+                            <th scope="col">USUARIO</th>
+                            <th scope="col">TIPO DE BONO</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">VALOR</th>
+                            <th scope="col">FECHA</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% results.forEach((bono) => { %> 
+                        <tr>
+                            <td><%= bono.user %></td>
+                            <td><%= bono.tipo_bono %></td>
+                            <td><%= bono.desc %></td>
+                            <td>$<%= bono.valor %></td>
+                            <td><%= bono.fecha_format %></td>
+                        </tr>
+                        <% }) %> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+<%- include("../templates/footer") %> 

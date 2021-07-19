@@ -1,0 +1,46 @@
+<%- include("../templates/head", {title: 'Agregar Bonos'}) %> 
+
+    <div class = 'container mt-4'>
+        <h1>Agregar <%= title %></h1>
+        <div class="card border-secondary">
+            <div class="card-header">Nuevo Registro</div>
+            <div class="card-body">
+                <form action="/bonos/save" method="POST">
+                    <div class="mb-3">
+                        <label for="user" class="form-label">Usuario</label>
+                        <select name="user" id="user" class="form-select" tabindex="1"> 
+                                <option value="" selected disabled hidden>Seleccione una opción</option>
+                            <% results.forEach((user) => { %>
+                                <option value="<%= user.id_user %>"> <%= user.user%> </option>
+                            <% }) %> 
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tipo_bono" class="form-label">Tipo de Bono</label>
+                        <input type="text" name="tipo_bono" id="tipo_bono" class="form-control" tabindex="2">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Descripción</label>
+                        <input type="text" name="desc" id="desc" class="form-control" tabindex="3">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="valor" class="form-label">Valor</label>
+                        <input type="text" name="valor" id="valor" class="form-control" tabindex="4">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control" tabindex="5">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                    <a href="/bonos" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+<%- include("../templates/footer") %> 

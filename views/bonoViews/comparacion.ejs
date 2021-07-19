@@ -1,0 +1,25 @@
+<%- include("../templates/head", {title: 'Comparación'}) %> 
+
+    <div class = 'container mt-4'>
+        <h1>Comparación</h1>
+        <div class="card border-secondary">
+            <div class="card-header">Comparar Bonos por fechas</div>
+            <div class="card-body">
+                <form action="/bonos/resultados" method="POST">
+                    <div class="mb-3">
+                        <label for="fecha1" class="form-label">Fecha de Inicio</label>
+                        <input type="date" name="fecha1" id="fecha1" class="form-control" tabindex="1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha2" class="form-label">Fecha de Fin</label>
+                        <input type="date" name="fecha2" id="fecha2" class="form-control" tabindex="2">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" tabindex="3">Filtrar</button>
+                    
+                </form>
+            </div>
+        </div>
+        
+    </div>
+<%- include("../templates/footer") %> 
